@@ -54,5 +54,5 @@ func (q *QuerySettings) WithStreaming(stream bool) {
 }
 
 func (q *QuerySettings) WithTimeout(duration time.Duration) {
-	q.settings.Timeout = uint64(duration.Milliseconds())
+	q.settings.Timeout = uint64(duration.Nanoseconds())
 }
