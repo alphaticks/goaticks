@@ -8,4 +8,4 @@ require (
 	google.golang.org/grpc v1.35.0
 )
 
-replace gitlab.com/tachikoma.ai/tickstore-go-client => ../../tachikoma.ai/tickstore-go-client
+//replace gitlab.com/tachikoma.ai/tickstore-go-client => ../../tachikoma.ai/tickstore-go-client
