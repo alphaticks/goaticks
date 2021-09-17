@@ -9,16 +9,19 @@ import (
 )
 
 func TestClient(t *testing.T) {
+
 	client, err := NewClient("-6946936700949124468", "4KGMaKcRm28ekc_yLkffjw==", DB_LIVE)
 	if err != nil {
 		t.Fatal(err)
 	}
 	qs := NewQuery()
-	from := time.Now().Add(-time.Hour * 24 * 30)
+	from := time.Now()
 	to := from.Add(10 * time.Second)
 	qs.WithFrom(from)
 	qs.WithTo(to)
 	qs.WithSelector("BestBid(orderbook)")
+	qs.WithTimeout(100 * time.Millisecond)
+	qs.WithStreaming(true)
 	qs.WithTags(map[string]string{
 		"exchange": "^binance$",
 		"symbol":   "^SOLUSDT$",
@@ -53,7 +56,7 @@ func TestBestBid(t *testing.T) {
 	qs.WithFrom(from)
 	qs.WithTo(to)
 	qs.WithSelector("BestBid(orderbook)")
-	//qs.WithTimeout(100 * time.Millisecond)
+	qs.WithTimeout(100 * time.Millisecond)
 	qs.WithTags(map[string]string{
 		"base":  "^RUNE$",
 		"quote": "^USDT$",
